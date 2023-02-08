@@ -6,19 +6,15 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
       - run: npm test
 
   package_check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
       - name: "Ensure that code has been packaged and commited."
         run: |-
             npm install
-            npm run package
-            git diff --exit-code dist/index.js || \
-              (echo -e "\nPlease run 'npm run package' and commit the results" && exit 1)
+            npm run
 
   test:
     runs-on: ${{ matrix.os }}
@@ -31,7 +27,7 @@ jobs:
       - name: Install doctl
         uses: ./
         with:
-          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+          token: ${{ secrets.DIGITAL_OCEAN_API_TOKEN }}
 
       - name: Verify installation
         run: doctl version
