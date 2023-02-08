@@ -27,7 +27,6 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
     steps:
-      - uses: actions/checkout@master
 
       - name: Install doctl
         uses: ./
