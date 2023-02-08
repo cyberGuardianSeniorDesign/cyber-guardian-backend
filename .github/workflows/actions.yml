@@ -3,6 +3,9 @@ name: Test and lint
 
 jobs:
 
+  install:
+     - run: npm ci
+
   lint:
     runs-on: ubuntu-latest
     steps:
