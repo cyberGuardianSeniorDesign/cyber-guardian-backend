@@ -1,40 +1,20 @@
-on: [push, pull_request_target]
-name: Test and lint
+name: Build and Deploy
+on: [push]
+  
 
 jobs:
-
-  install:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-     - run: npm ci
-
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - run: npm test
-
-  package_check:
-    runs-on: ubuntu-latest
-    steps:
-      - name: "Ensure that code has been packaged and commited."
-        run: |-
-            npm install
-            npm run
-
-  test:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
-    steps:
-
-      - name: Install doctl
-        uses: ./
+      - name: Deploy NodeJS app
+        uses: appleboy/ssh-action@v0.1.7
         with:
-          token: ${{ secrets.DIGITAL_OCEAN_API_TOKEN }}
+          host: ${{secrets.SSH_HOST}} # server IP address
+          key: ${{secrets.SSH_KEY}} # key for server
+          username: ${{secrets.SSH_USERNAME}} # username for server
 
-      - name: Verify installation
-        run: doctl version
-
-      - name: Verify log-in
-        run: doctl compute region list
+          script: |
+            mkdir test
+            cd test
+            git clone git@github.com:cyberGuardianSeniorDesign/cyber-guardian-backend.git
+            echo 'Successful deployment to Digital Ocean'
