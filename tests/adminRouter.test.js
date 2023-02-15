@@ -13,7 +13,7 @@ const newAdmin = new admin({
 var newAdminEmail;
 
 //create mock mongoDB for testing and mock object to use in tests
-before(async () => {
+beforeAll(async () => {
     await basicSetup.connect();
 
     await newAdmin.save(function(err, newAdmin) {
@@ -22,7 +22,7 @@ before(async () => {
 });
 
 //close db and server
-after(async () => {
+afterAll(async () => {
     await basicSetup.clearDatabase()
     await basicSetup.closeDatabase()
 });

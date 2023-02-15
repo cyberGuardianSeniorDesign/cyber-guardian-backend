@@ -4,7 +4,7 @@
   "description": "Senior design project",
   "main": "server.js",
   "scripts": {
-    "test": "mocha --timeout 10000 'tests/adminRouter.test.js'"
+    "test": "jest --runInBand --detectOpenHandles ./test"
   },
   "author": "",
   "license": "ISC",
@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "chai": "^4.3.7",
+    "jest": "^27.5.1",
     "mocha": "^10.2.0",
     "supertest": "^6.3.3"
   }
