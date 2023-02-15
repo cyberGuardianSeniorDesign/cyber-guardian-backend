@@ -7,13 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Deploy app
-        with:
-          host: ${{secrets.SSH_HOST}} # server IP address
-          key: ${{secrets.SSH_KEY}} # key for server
-          username: ${{secrets.SSH_USERNAME}} # username for server
-          passphrase: ${{ secrets.ADMIN_PASSPHRASE }} # passphrase for admin side
-
-          script: |
+        run:
             ssh -i ${{secrets.SSH_KEY}} ${{secrets.SSH_USERNAME}}@${{secrets.SSH_HOST}}
             mkdir test
             cd test
