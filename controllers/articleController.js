@@ -33,7 +33,6 @@ exports.createArticle = (req, res) => {
             content: content,
         })
 
-        console.log(content)
         
     newArticle.save()
         .then( article => {

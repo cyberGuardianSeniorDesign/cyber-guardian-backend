@@ -37,7 +37,7 @@ exports.createChecklist = (req, res) => {
     
     console.log(newChecklist)
     newChecklist.save()
-        .then( checklist => {
+        .then(checklist => {
             return res.status(202).json(checklist)
         })
         .catch( err => {
