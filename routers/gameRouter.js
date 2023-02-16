@@ -7,6 +7,6 @@ const verifyJWT = require('../verifyRouter')
 
 gameRouter.get('/', gameController.getGames)
 gameRouter.get('/:id', gameController.getOneGame)
-gameRouter.patch('/:id', verifyJWT, bodyParser, gameController.updateGame)
+gameRouter.patch('/:id', verifyJWT, jsonParser, gameController.updateGame)
 
 module.exports = gameRouter
