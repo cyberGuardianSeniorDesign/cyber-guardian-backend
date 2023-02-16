@@ -4,7 +4,7 @@
   "description": "Senior design project",
   "main": "server.js",
   "scripts": {
-    "test": "jest --runInBand --detectOpenHandles ./test"
+    "test": "jest --runInBand --detectOpenHandles --forceExit ./test"
   },
   "author": "",
   "license": "ISC",
