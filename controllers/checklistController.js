@@ -23,19 +23,19 @@ exports.getOneChecklist = (req, res) => {
 } 
 
 exports.createChecklist = (req, res) => {
-    const title = req.params.title
-    const author = req.params.author
-    const level = req.params.level
-    const content = req.params.content
+    const title = req.body.title
+    const author = req.body.author
+    const level = req.body.level
+    const content = req.body.content
 
     const newChecklist = new Checklist({
             title: title,
             author: author,
             level: level,
-            content: content
+            content: content,
     })
-        
-        console.log(newChecklist)
+    
+    console.log(newChecklist)
     newChecklist.save()
         .then(checklist => {
             return res.status(202).json(checklist)
@@ -47,9 +47,10 @@ exports.createChecklist = (req, res) => {
 
 exports.updateChecklist = (req, res) => {
     const id = req.params.id
-
+    const update = req.body
+    console.log(update)
     try{
-        Checklist.findOneAndUpdate(id, req.params)
+        Checklist.findOneAndUpdate(id, update)
         return res.status(203).json({message: 'Checklist Updated'})
     } catch(err){
         return res.status(503).json({message: 'Could not update checklist' + err})
