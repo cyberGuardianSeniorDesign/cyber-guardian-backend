@@ -14,8 +14,7 @@ const newChecklist = new checklist({
     id: 1,
     title: "title" ,
     author: "author",
-    content: "content",
-    images: []
+    content: []
 });
 
 var newChecklistId
@@ -63,7 +62,6 @@ describe('POST: /save route to insert data', ()=>{
             id: 2,
             title: "checklist1",
             author: "author1",
-            level: "intermediate",
             content: []
         };
         await request(app).post('/checklist')
