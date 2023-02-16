@@ -17,11 +17,9 @@ module.exports.connect = async () => {
 };
 
 module.exports.closeDatabase = async () => {
-    if (mongod) {
-        await mongoose.connection.dropDatabase();
-        await mongoose.connection.close();
-        await mongod.stop();
-    }
+    await mongoose.connection.dropDatabase();
+    await mongoose.connection.close();
+    await mongod.stop();
 };
 
 module.exports.clearDatabase = async () => {
