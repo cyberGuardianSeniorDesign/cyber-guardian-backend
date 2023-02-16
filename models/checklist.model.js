@@ -6,7 +6,13 @@ const ChecklistSchema = new Schema({
     title: String,
     author: String,
     level: String,
-    content: String
+    content: [
+        {
+            index: Number,
+            contentType: String,
+            text: String
+        }
+    ]
 })
 
 module.exports = mongoose.model("Checklist", ChecklistSchema)
