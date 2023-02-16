@@ -1,9 +1,5 @@
 'use strict';
 
-const dotenv = require('dotenv')
-//configure .env file
-dotenv.config()
-
 const mongoose = require('mongoose');
 const { MongoMemoryServer } = require('mongodb-memory-server');
 
@@ -30,7 +26,7 @@ module.exports.closeDatabase = async () => {
 
 module.exports.clearDatabase = async () => {
     if(mongod) {
-        const collections = mongoose.connection.collections;
+        const collections = await mongoose.connection.collections;
 
         for (const key in collections) {
             const collection = collections[key];

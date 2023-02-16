@@ -25,18 +25,19 @@ exports.getOneChecklist = (req, res) => {
 exports.createChecklist = (req, res) => {
     const title = req.params.title
     const author = req.params.author
+    const level = req.params.level
     const content = req.params.content
-    const images = req.params.images
 
-    const newChecklist = Checklist.create({
+    const newChecklist = new Checklist({
             title: title,
             author: author,
-            content: content,
-            images: images
+            level: level,
+            content: content
     })
         
+        console.log(newChecklist)
     newChecklist.save()
-        .then( checklist => {
+        .then(checklist => {
             return res.status(202).json(checklist)
         })
         .catch( err => {
