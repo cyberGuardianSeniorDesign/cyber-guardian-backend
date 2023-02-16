@@ -5,11 +5,14 @@ const Schema = mongoose.Schema
 const ChecklistSchema = new Schema({
     title: String,
     author: String,
-    content: String,
-    images: [{
-        data: Buffer,
-        contentType: String
-    }]
+    level: String,
+    content: [
+        {
+            index: Number,
+            contentType: String,
+            text: String
+        }
+    ]
 })
 
 module.exports = mongoose.model("Checklist", ChecklistSchema)
