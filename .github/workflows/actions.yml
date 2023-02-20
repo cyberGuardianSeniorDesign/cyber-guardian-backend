@@ -9,9 +9,9 @@ jobs:
       - name: Deploy app
         uses: appleboy/ssh-action@v0.1.2
         with:
-          host: ${{secrets.SSH_HOST}} # server IP address
-          key: ${{secrets.SSH_KEY}} # key for server
-          username: ${{secrets.SSH_USERNAME}} # username for server
+          host: ${{ secrets.SSH_HOST }} # server IP address
+          key: ${{ secrets.SSH_KEY }} # key for server
+          username: ${{ secrets.SSH_USERNAME }} # username for server
           passphrase: ${{ secrets.ADMIN_PASSPHRASE }} # passphrase for admin side
 
           script: |
