@@ -4,7 +4,7 @@
   "description": "Senior design project",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --runInBand --detectOpenHandles --forceExit ./test"
   },
   "author": "",
   "license": "ISC",
@@ -16,9 +16,16 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.0",
-    "mongodb": "^4.11.0",
+    "mongodb": "^4.13.0",
+    "mongodb-memory-server": "^8.11.4",
     "mongoose": "^6.7.1",
     "multer": "^1.4.5-lts.1",
     "nodemon": "^2.0.20"
+  },
+  "devDependencies": {
+    "chai": "^4.3.7",
+    "jest": "^27.5.1",
+    "mocha": "^10.2.0",
+    "supertest": "^6.3.3"
   }
 }
