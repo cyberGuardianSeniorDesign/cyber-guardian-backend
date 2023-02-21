@@ -45,12 +45,12 @@ exports.createChecklist = (req, res) => {
         })
 }
 
-exports.updateChecklist = (req, res) => {
+exports.updateChecklist = async(req, res) => {
     const id = req.params.id
     const update = req.body
-    console.log(update)
+    console.log(id)
     try{
-        Checklist.findOneAndUpdate(id, update)
+        await Checklist.findOneAndUpdate({_id: id}, update)
         return res.status(203).json({message: 'Checklist Updated'})
     } catch(err){
         return res.status(503).json({message: 'Could not update checklist' + err})

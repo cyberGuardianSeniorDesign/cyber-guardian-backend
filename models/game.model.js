@@ -3,7 +3,8 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const GameSchema = new Schema({
-    title: String ,
+    title: String,
+    description: String,
     running: Boolean
 })
 

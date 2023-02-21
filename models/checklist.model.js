@@ -6,6 +6,7 @@ const ChecklistSchema = new Schema({
     title: String,
     author: String,
     level: String,
+    description: String,
     content: [
         {
             index: Number,

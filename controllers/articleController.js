@@ -25,15 +25,15 @@ exports.getOneArticle = (req, res) => {
 exports.createArticle = (req, res) => {
     const title = req.body.title
     const author = req.body.author
+    const level = req.body.level
     let content = req.body.content
 
     const newArticle = new Article({
             title: title,
             author: author,
+            level: level,
             content: content,
         })
-
-        console.log(content)
         
     newArticle.save()
         .then( article => {
