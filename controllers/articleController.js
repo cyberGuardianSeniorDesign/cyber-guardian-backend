@@ -50,7 +50,7 @@ exports.updateArticle = async(req, res) => {
     const update = req.body
     try{
         await Article.findOneAndUpdate({_id: id}, update)
-        console.log('article updated')
+      
         return res.status(203).json({message: 'Article Updated'})
     } catch(err){
         console.log(err)

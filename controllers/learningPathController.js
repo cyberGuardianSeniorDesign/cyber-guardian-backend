@@ -23,16 +23,18 @@ exports.getOneLearningPath = (req, res) => {
 } 
 
 exports.createLearningPath = (req, res) => {
-    const title = req.params.title
-    const author = req.params.author
-    const content = req.params.content
-    const images = req.params.images
+    const title = req.body.title
+    const author = req.body.author
+    const level = req.body.level
+    const content = req.body.content
+    const description = req.body.description
 
-    const newLearningPath = LearningPath.create({
+    const newLearningPath = new LearningPath({
             title: title,
             author: author,
+            level: level,
             content: content,
-            images: images
+            description: description
         })
         
     newLearningPath.save()
@@ -44,11 +46,14 @@ exports.createLearningPath = (req, res) => {
         })
 }
 
-exports.updateLearningPath = (req, res) => {
+exports.updateLearningPath = async(req, res) => {
     const id = req.params.id
+    const update = req.body
 
+    console.log(id)
+    console.log(update)
     try{
-        LearningPath.findOneAndUpdate(id, req.params)
+        await LearningPath.findOneAndUpdate({_id: id}, update)
         return res.status(203).json({message: 'LearningPath Updated'})
     } catch(err){
         return res.status(503).json({message: 'Could not update learning path' + err})

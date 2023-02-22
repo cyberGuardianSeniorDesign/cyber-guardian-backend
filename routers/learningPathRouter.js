@@ -11,7 +11,7 @@ learningPathRouter.get('/:id', learningPathController.getOneLearningPath)
 
 learningPathRouter.post('/', verifyJWT, jsonParser, learningPathController.createLearningPath)
 
-learningPathRouter.patch('/:id', verifyJWT, learningPathController.updateLearningPath)
+learningPathRouter.patch('/:id', verifyJWT, jsonParser, learningPathController.updateLearningPath)
 
 learningPathRouter.delete('/:id', verifyJWT, learningPathController.deleteLearningPath)
 
