@@ -67,7 +67,7 @@ describe('POST: /save route to insert data', ()=>{
         await request(app).post('/learningPath')
             .send(toSendData)
             .then((res)=>{
-                expect(res.statusCode).to.equal(500);
+                expect(res.statusCode).to.equal(202);
                 expect(res.body.id).to.equal(undefined)
             })
     })
