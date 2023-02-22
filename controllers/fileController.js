@@ -1,8 +1,7 @@
 const processFile = require("../upload");
 const { format } = require("util");
 const { Storage } = require("@google-cloud/storage");
-const dotenv = require('dotenv')
-dotenv.config()
+
 
 // Instantiate a storage client with credentials
 const storage = new Storage({ keyFilename: "bucket-key.json" }); 
