@@ -12,7 +12,7 @@ jobs:
           host: ${{ secrets.CLIENT_HOST }} # server IP address
           key: ${{ secrets.CLIENT_KEY }} # key for server
           username: ${{ secrets.SSH_USERNAME }} # username for server
-          passphrase: ${{ secrets.USER_PASSPHRASE }} # passphrase for admin side
+          # passphrase: ${{ secrets.USER_PASSPHRASE }} # passphrase for client side
 
           script: |
             cd ~/test
