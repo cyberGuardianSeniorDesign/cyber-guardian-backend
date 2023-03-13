@@ -17,6 +17,6 @@ jobs:
           script: |
             cd ~/test
             ssh-keyscan -H ${{ secrets.CLIENT_HOST }} > ~/.ssh/known_hosts # gather SSH public keys from servers
-            # git clone git@github.com:cyberGuardianSeniorDesign/cyber-guardian-backend.git
-            git clone https://github.com/cyberGuardianSeniorDesign/cyber-guardian-backend.git
+            git clone backend:cyberGuardianSeniorDesign/cyber-guardian-backend.git
+            # git clone https://github.com/cyberGuardianSeniorDesign/cyber-guardian-backend.git
             echo 'Successful deployment to Digital Ocean'
