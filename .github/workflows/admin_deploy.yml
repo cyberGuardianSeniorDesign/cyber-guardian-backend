@@ -1,9 +1,5 @@
 name: Build and Deploy to Admin
-on:
-  push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
+on: [push]
   
 
 jobs:
