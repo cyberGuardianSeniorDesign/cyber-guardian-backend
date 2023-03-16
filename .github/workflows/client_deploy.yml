@@ -1,22 +1,27 @@
 name: Build and Deploy to Client
+
 on: [push]
-  
+
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-    steps:
-      - name: Deploy app to client
-        uses: appleboy/ssh-action@v0.1.2
-        with:
-          host: ${{ secrets.CLIENT_HOST }} # server IP address
-          key: ${{ secrets.CLIENT_KEY }} # key for server
-          username: ${{ secrets.SSH_USERNAME }} # username for server
-          # passphrase: ${{ secrets.USER_PASSPHRASE }} # passphrase for client side
 
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Executing remote ssh commands using password
+        uses: appleboy/ssh-action@v0.1.7
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.CLIENT_KEY }}
+        with:
+          host: ${{ secrets.CLIENT_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
           script: |
-            cd ~/test
-            ssh-keyscan -H ${{ secrets.CLIENT_HOST }} > ~/.ssh/known_hosts # gather SSH public keys from servers
-            git clone backend:cyberGuardianSeniorDesign/cyber-guardian-backend.git
-            # git clone https://github.com/cyberGuardianSeniorDesign/cyber-guardian-backend.git
-            echo 'Successful deployment to Digital Ocean'
+            install -m 600 -D /dev/null ~/.ssh/id_rsa
+            echo "${{ secrets.CLIENT_KEY }}" > ~/.ssh/id_rsa
+            host='github.com'
+            hosts="$(dig +short "$host" | grep -v '\.$' | sed -z 's|\n|,|g')$host"
+            ssh-keyscan -H "$hosts" > ~/.ssh/known_hosts
+            git pull origin main

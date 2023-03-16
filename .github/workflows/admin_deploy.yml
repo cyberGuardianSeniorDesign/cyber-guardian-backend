@@ -1,5 +1,9 @@
 name: Build and Deploy to Admin
-on: [push]
+on: 
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
   
 
 jobs:
@@ -11,7 +15,7 @@ jobs:
         with:
           host: ${{ secrets.SSH_HOST }} # server IP address
           key: ${{ secrets.SSH_KEY }} # key for server
-          username: ${{ secrets.SSH_USERNAME}} # username for server
+          username: ${{ secrets.SSH_USERNAME }} # username for server
           passphrase: ${{ secrets.ADMIN_PASSPHRASE }} # passphrase for admin side
 
           script: |
