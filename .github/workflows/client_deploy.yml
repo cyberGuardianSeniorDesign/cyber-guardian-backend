@@ -11,8 +11,7 @@ jobs:
         with:
           host: ${{ secrets.CLIENT_HOST }} # server IP address
           key: ${{ secrets.CLIENT_KEY }} # key for server
-          # username: ${{ secrets.SSH_USERNAME }} # username for server
-          username: backend
+          username: ${{ secrets.SSH_USERNAME }} # username for server
           # passphrase: ${{ secrets.CLIENT_PASSPHRASE }} # passphrase for client side
 
           script: |
