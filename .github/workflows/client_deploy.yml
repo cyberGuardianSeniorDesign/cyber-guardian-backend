@@ -11,13 +11,13 @@ jobs:
         with:
           host: ${{ secrets.CLIENT_HOST }} # server IP address
           key: ${{ secrets.CLIENT_KEY }} # key for server
-          username: ${{ secrets.SSH_USERNAME }} # username for server
+          # username: ${{ secrets.SSH_USERNAME }} # username for server
+          username: backend
           # passphrase: ${{ secrets.CLIENT_PASSPHRASE }} # passphrase for client side
 
           script: |
             cd ~/test
             ssh-keyscan -H ${{ secrets.CLIENT_HOST }} > ~/.ssh/known_hosts # gather SSH public keys from servers
-            git clone root@cyberGuardianSeniorDesign/cyber-guardian-backend.git
-            # git clone backend:cyberGuardianSeniorDesign/cyber-guardian-backend.git
+            git clone backend:cyberGuardianSeniorDesign/cyber-guardian-backend.git
             # git clone https://github.com/cyberGuardianSeniorDesign/cyber-guardian-backend.git
             echo 'Successful deployment to Digital Ocean'
