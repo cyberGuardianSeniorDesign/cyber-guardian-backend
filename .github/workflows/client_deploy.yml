@@ -3,7 +3,7 @@ on: [push]
   
 
 jobs:
-  deploy:
+  deploy-to-client:
     runs-on: ubuntu-latest
     steps:
       - name: Deploy app to client

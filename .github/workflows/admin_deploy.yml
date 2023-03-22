@@ -1,17 +1,13 @@
 name: Build and Deploy to Admin
-on: 
-  push:
-    branches: [master]
-  pull_request:
-    branches: [master]
+on: [push]
   
 
 jobs:
-  deploy:
+  deploy-to-admin:
     runs-on: ubuntu-latest
     steps:
       - name: Deploy app to admin
-        uses: appleboy/ssh-action@v0.1.2
+        uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SSH_HOST }} # server IP address
           key: ${{ secrets.SSH_KEY }} # key for server
@@ -20,7 +16,12 @@ jobs:
 
           script: |
             cd ~/test
-            ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts # gather SSH public keys from servers
-            # git clone git@github.com:cyberGuardianSeniorDesign/cyber-guardian-backend.git
+            ssh-keyscan -H ${{ secrets.CLIENT_HOST }} > ~/.ssh/known_hosts # gather SSH public keys from servers
+            rm -r cyber-guardian-backend
+            echo 'Deleted old folder'
+            # git clone backend:cyberGuardianSeniorDesign@cyber-guardian-backend.git
             git clone https://github.com/cyberGuardianSeniorDesign/cyber-guardian-backend.git
+            # rm -r ~/server/*
+            # mv -t ~/server/ ~/test/cyber-guardian-backend/*
+            # echo 'Moved to correct folder'
             echo 'Successful deployment to Digital Ocean'
