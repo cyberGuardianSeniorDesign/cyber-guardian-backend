@@ -21,6 +21,7 @@ jobs:
             echo 'Deleted old folder'
             # git clone backend:cyberGuardianSeniorDesign@cyber-guardian-backend.git
             git clone https://github.com/cyberGuardianSeniorDesign/cyber-guardian-backend.git
+            rm -r ~/server/*
             mv -t ~/server/ ~/test/cyber-guardian-backend/*
             echo 'Moved to correct folder'
             echo 'Successful deployment to Digital Ocean'
