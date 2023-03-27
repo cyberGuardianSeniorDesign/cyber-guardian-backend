@@ -63,7 +63,7 @@ describe('POST: /save route to insert data', ()=>{
             description: "game description",
             running: true
         };
-        await request(app).post('/checklist')
+        await request(app).post('/game')
             .send(toSendData)
             .then((res)=>{
                 expect(res.statusCode).to.equal(202);

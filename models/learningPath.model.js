@@ -13,7 +13,8 @@ const LearningPathSchema = new Schema({
         title: String,
         description: String,
         link: String
-    }]
+    }],
+    thumbnail: String
 })
 
 module.exports = mongoose.model("LearningPath", LearningPathSchema)
