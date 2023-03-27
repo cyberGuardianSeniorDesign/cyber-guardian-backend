@@ -26,11 +26,13 @@ exports.createGame = async(req, res) => {
     const title = req.body.title
     const description = req.body.description
     const running = req.body.running
+    const thumbnail = req.body.thumbnail
 
     const newGame = new Game({
             title: title,
             description: description,
-            running: running
+            running: running,
+            thumbnail: thumbnail
     })
     
     newGame.save()

@@ -26,16 +26,19 @@ exports.createChecklist = (req, res) => {
     const title = req.body.title
     const author = req.body.author
     const level = req.body.level
+    const description = req.body.description
     const content = req.body.content
+    const thumbnail = req.body.thumbnail
 
     const newChecklist = new Checklist({
             title: title,
             author: author,
             level: level,
+            description: description,
             content: content,
+            thumbnail: thumbnail
     })
     
-    console.log(newChecklist)
     newChecklist.save()
         .then(checklist => {
             return res.status(202).json(checklist)

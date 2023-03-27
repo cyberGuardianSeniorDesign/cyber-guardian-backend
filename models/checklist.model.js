@@ -9,11 +9,13 @@ const ChecklistSchema = new Schema({
     description: String,
     content: [
         {
-            index: Number,
+            index: String,
             contentType: String,
-            text: String
+            text: String,
+            caption: String
         }
-    ]
+    ],
+    thumbnail: String
 })
 
 module.exports = mongoose.model("Checklist", ChecklistSchema)

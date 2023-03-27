@@ -26,13 +26,17 @@ exports.createArticle = (req, res) => {
     const title = req.body.title
     const author = req.body.author
     const level = req.body.level
-    let content = req.body.content
+    const description = req.body.description
+    const content = req.body.content
+    const thumbnail = req.body.thumbnail
 
     const newArticle = new Article({
             title: title,
             author: author,
             level: level,
+            description: description,
             content: content,
+            thumbnail: thumbnail
         })
         
     newArticle.save()

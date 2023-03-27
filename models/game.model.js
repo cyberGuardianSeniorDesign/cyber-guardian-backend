@@ -5,7 +5,8 @@ const Schema = mongoose.Schema
 const GameSchema = new Schema({
     title: String,
     description: String,
-    running: Boolean
+    running: Boolean,
+    thumbnail: String
 })
 
 module.exports = mongoose.model("Game", GameSchema)

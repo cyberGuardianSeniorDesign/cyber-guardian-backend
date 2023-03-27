@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const Schema = mongoose.Schema
 
-const ArticleSchema = new Schema({
+const TestSchema = new Schema({
     title: String ,
     author: String,
     level: String,
@@ -10,11 +10,10 @@ const ArticleSchema = new Schema({
     content: [{
         index: String,
         contentType: String,
-        header: String,
-        text: String,
+        text: [],
         caption: String
     }],
     thumbnail: String
 })
 
-module.exports = mongoose.model("Article", ArticleSchema)
+module.exports = mongoose.model("Test", TestSchema)

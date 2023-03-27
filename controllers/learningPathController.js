@@ -28,13 +28,15 @@ exports.createLearningPath = (req, res) => {
     const level = req.body.level
     const content = req.body.content
     const description = req.body.description
+    const thumbnail = req.body.thumbnail
 
     const newLearningPath = new LearningPath({
             title: title,
             author: author,
             level: level,
             content: content,
-            description: description
+            description: description,
+            thumbnail: thumbnail
         })
         
     newLearningPath.save()
