@@ -10,11 +10,9 @@ exports.getContent = async(req, res) => {
     const games = await Game.find()
 
     res.status(210).json({
-        data: {
             articles: articles,
             checklists: checklists,
             learningPath: learningPath,
             games: games
-        }
     })
 }

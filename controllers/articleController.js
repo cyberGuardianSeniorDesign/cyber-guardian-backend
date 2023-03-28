@@ -25,14 +25,19 @@ exports.getOneArticle = (req, res) => {
 exports.createArticle = (req, res) => {
     const title = req.body.title
     const author = req.body.author
-    let content = req.body.content
+    const level = req.body.level
+    const description = req.body.description
+    const content = req.body.content
+    const thumbnail = req.body.thumbnail
 
     const newArticle = new Article({
             title: title,
             author: author,
+            level: level,
+            description: description,
             content: content,
+            thumbnail: thumbnail
         })
-
         
     newArticle.save()
         .then( article => {
@@ -49,7 +54,7 @@ exports.updateArticle = async(req, res) => {
     const update = req.body
     try{
         await Article.findOneAndUpdate({_id: id}, update)
-        console.log('article updated')
+      
         return res.status(203).json({message: 'Article Updated'})
     } catch(err){
         console.log(err)
