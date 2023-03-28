@@ -22,11 +22,33 @@ exports.getOneGame = (req, res) => {
         })
 } 
 
-exports.updateGame = (req, res) => {
-    const id = req.params.id
+exports.createGame = async(req, res) => {
+    const title = req.body.title
+    const description = req.body.description
+    const running = req.body.running
+    const thumbnail = req.body.thumbnail
 
+    const newGame = new Game({
+            title: title,
+            description: description,
+            running: running,
+            thumbnail: thumbnail
+    })
+    
+    newGame.save()
+        .then(game => {
+            return res.status(202).json(game)
+        })
+        .catch( err => {
+            return res.status(502).json({message: 'Could not save checklist: ' + err})
+        })
+}
+
+exports.updateGame = async(req, res) => {
+    const id = req.params.id
+    const update = req.body
     try{
-        Game.findOneAndUpdate(id, req.params)
+        await Game.findOneAndUpdate({_id: id}, update)
         return res.status(203).json({message: 'Game Updated'})
     } catch(err){
         return res.status(503).json({message: 'Could not update game'})

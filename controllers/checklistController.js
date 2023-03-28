@@ -23,18 +23,22 @@ exports.getOneChecklist = (req, res) => {
 } 
 
 exports.createChecklist = (req, res) => {
-    const title = req.params.title
-    const author = req.params.author
-    const content = req.params.content
-    const images = req.params.images
+    const title = req.body.title
+    const author = req.body.author
+    const level = req.body.level
+    const description = req.body.description
+    const content = req.body.content
+    const thumbnail = req.body.thumbnail
 
-    const newChecklist = Checklist.create({
+    const newChecklist = new Checklist({
             title: title,
             author: author,
+            level: level,
+            description: description,
             content: content,
-            images: images
+            thumbnail: thumbnail
     })
-        
+    
     newChecklist.save()
         .then(checklist => {
             return res.status(202).json(checklist)
@@ -44,11 +48,12 @@ exports.createChecklist = (req, res) => {
         })
 }
 
-exports.updateChecklist = (req, res) => {
+exports.updateChecklist = async(req, res) => {
     const id = req.params.id
-
+    const update = req.body
+    console.log(id)
     try{
-        Checklist.findOneAndUpdate(id, req.params)
+        await Checklist.findOneAndUpdate({_id: id}, update)
         return res.status(203).json({message: 'Checklist Updated'})
     } catch(err){
         return res.status(503).json({message: 'Could not update checklist' + err})

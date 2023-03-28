@@ -5,6 +5,8 @@ const Schema = mongoose.Schema
 const LearningPathSchema = new Schema({
     title: String,
     author: String,
+    level: String,
+    description: String,
     content: [{
         index: Number,
         contentType: String,
