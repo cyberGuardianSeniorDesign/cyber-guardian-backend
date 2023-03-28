@@ -55,6 +55,23 @@ describe('GET: /get route to get one users data', ()=>{
     })
 })
 
+describe('POST: /save route to insert data', ()=>{
+    it('inserted data', async ()=>{
+        let toSendData = {
+            id: 2,
+            title: "Game1",
+            description: "game description",
+            running: true
+        };
+        await request(app).post('/game')
+            .send(toSendData)
+            .then((res)=>{
+                expect(res.statusCode).to.equal(202);
+                expect(res.body.id).to.equal(undefined)
+            })
+    })
+})
+
 //test updating items in db
 describe('PATCH: /patch route to update data', ()=>{
     it('updated games status', async ()=>{
