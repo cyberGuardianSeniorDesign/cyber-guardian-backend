@@ -1,0 +1,31 @@
+name: Build and Deploy to Client
+on: 
+  push:
+    branches: ["master"]
+  pull_request:
+    branches: ["master"]
+  
+
+jobs:
+  deploy-to-client:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy app to client
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.CLIENT_HOST }} # server IP address
+          key: ${{ secrets.CLIENT_KEY }} # key for server
+          username: ${{ secrets.SSH_USERNAME }} # username for server
+          # passphrase: ${{ secrets.CLIENT_PASSPHRASE }} # passphrase for client side
+
+          script: |
+            cd ~/test
+            ssh-keyscan -H ${{ secrets.CLIENT_HOST }} > ~/.ssh/known_hosts # gather SSH public keys from servers
+            rm -r cyber-guardian-backend
+            echo 'Deleted old folder'
+            # git clone backend:cyberGuardianSeniorDesign@cyber-guardian-backend.git
+            git clone https://github.com/cyberGuardianSeniorDesign/cyber-guardian-backend.git
+            rm -r ~/server/*
+            mv -t ~/server/ ~/test/cyber-guardian-backend/*
+            echo 'Moved to correct folder'
+            echo 'Successful deployment to Digital Ocean'
