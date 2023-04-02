@@ -83,3 +83,14 @@ exports.download = async (req, res) => {
         })
     }
   }
+
+  exports.localDelete = async (name) => {
+    console.log("filecontroller: " + name)
+    try {
+      await bucket.file(name).delete()
+      
+      console.log("File deleted")
+  } catch (err) {
+    console.log(err)
+  }
+  }

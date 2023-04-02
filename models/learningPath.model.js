@@ -15,6 +15,6 @@ const LearningPathSchema = new Schema({
         link: String
     }],
     thumbnail: String
-})
+}, {timestamps: true})
 
 module.exports = mongoose.model("LearningPath", LearningPathSchema)

@@ -16,6 +16,6 @@ const ChecklistSchema = new Schema({
         }
     ],
     thumbnail: String
-})
+}, {timestamps: true})
 
 module.exports = mongoose.model("Checklist", ChecklistSchema)

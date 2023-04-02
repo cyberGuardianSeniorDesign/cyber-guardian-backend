@@ -10,10 +10,10 @@ const TestSchema = new Schema({
     content: [{
         index: String,
         contentType: String,
-        text: [],
+        text: String,
         caption: String
     }],
     thumbnail: String
-})
+}, {timestamps: true})
 
 module.exports = mongoose.model("Test", TestSchema)

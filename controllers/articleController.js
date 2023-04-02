@@ -1,4 +1,5 @@
 const Article = require('../models/article.model.js')
+const fileController = require('./fileController.js')
 
 exports.getArticles = (req, res) => {
     Article.find()
@@ -64,7 +65,26 @@ exports.updateArticle = async(req, res) => {
 
 exports.deleteArticle = (req, res) => {
     const id = req.params.id
+    
+    //delete images in artile
+    Article.findById(id)
+    .then(article =>{
+        if(article.thumbnail != ''){
+            fileController.localDelete(article.thumbnail)
+        }
 
+        article.content.forEach(content => {
+            if(content.contentType == 'image'){
+                console.log("ARTICLECONTROLLER: " + content.text)
+                fileController.localDelete(content.text) 
+            }
+        })
+    })
+    .catch(err => {
+            console.log("ERROR: COULDNT FIND ARTICLE")
+    })
+    
+    
     Article.findByIdAndDelete(id)
     .then(res.status(209).json({message: 'Article Deleted'}))
     .catch(err => {
