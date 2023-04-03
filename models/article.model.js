@@ -12,9 +12,10 @@ const ArticleSchema = new Schema({
         contentType: String,
         header: String,
         text: String,
+        raw: {},
         caption: String
     }],
     thumbnail: String
 }, {timestamps: true})
 
-module.exports = mongoose.model("Article", ArticleSchema)
+module.exports = mongoose.model("Article", ArticleSchema)   
