@@ -30,5 +30,6 @@ jobs:
             mv -t ~/server/ ~/test/cyber-guardian-backend/*
             echo 'Moved to correct folder'
             echo 'Successful deployment to Digital Ocean'
-            npm i --production
+            cd ~/server
+            npm i --omit=dev
             echo 'made it this far!'
