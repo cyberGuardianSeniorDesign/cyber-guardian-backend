@@ -31,7 +31,6 @@ jobs:
             cp ~/bucket-key.json ~/server
             echo 'Moved to correct folder'
             cd ~/server
-            apt-get install -y npm
             npm install --production
             echo 'Successfully installed node modules'
             npm run production-build
