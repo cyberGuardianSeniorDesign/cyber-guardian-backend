@@ -8,10 +8,12 @@ const LearningPathSchema = new Schema({
     level: String,
     description: String,
     content: [{
-        index: Number,
+        index: String,
         contentType: String,
         title: String,
         description: String,
+        img: String,
+        data: {},
         link: String
     }],
     thumbnail: String
