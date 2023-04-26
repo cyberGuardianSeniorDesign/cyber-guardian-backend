@@ -1,4 +1,4 @@
-name: Build and Deploy to Client
+name: Build and Deploy to Backend
 on: 
   push:
     branches: ["master"]
@@ -10,22 +10,29 @@ jobs:
   deploy-to-client:
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy app to client
+      - name: Deploy app to backend
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.CLIENT_HOST }} # server IP address
-          key: ${{ secrets.CLIENT_KEY }} # key for server
+          host: ${{ secrets.BACKEND_HOST }} # server IP address
+          key: ${{ secrets.BACKEND_KEY }} # key for server
           username: ${{ secrets.SSH_USERNAME }} # username for server
           # passphrase: ${{ secrets.CLIENT_PASSPHRASE }} # passphrase for client side
 
           script: |
+            mkdir test
             cd ~/test
-            ssh-keyscan -H ${{ secrets.CLIENT_HOST }} > ~/.ssh/known_hosts # gather SSH public keys from servers
+            ssh-keyscan -H ${{ secrets.BACKEND_HOST }} > ~/.ssh/known_hosts # gather SSH public keys from servers
             rm -r cyber-guardian-backend
             echo 'Deleted old folder'
             # git clone backend:cyberGuardianSeniorDesign@cyber-guardian-backend.git
             git clone https://github.com/cyberGuardianSeniorDesign/cyber-guardian-backend.git
             rm -r ~/server/*
             mv -t ~/server/ ~/test/cyber-guardian-backend/*
+            cp ~/bucket-key.json ~/server
             echo 'Moved to correct folder'
+            cd ~/server
+            npm install --production
+            echo 'Successfully installed node modules'
+            npm run production-build
+            pm2 serve build
             echo 'Successful deployment to Digital Ocean'
